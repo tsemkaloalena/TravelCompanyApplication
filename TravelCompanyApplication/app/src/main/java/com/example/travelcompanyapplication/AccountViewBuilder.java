@@ -174,7 +174,8 @@ public class AccountViewBuilder implements View.OnClickListener {
         TableLayout.LayoutParams totalCostLayoutParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT);
         totalCostLayoutParams.setMargins(0, 50, 0, 20);
         TextView totalCostView = HotelsViewBuilder.createTableColumn(view, totalCostLayoutParams, "Total cost for room: " + totalCost + " $", 24, Integer.parseInt(hotelData.get(0)) * 10000 + 15);
-        totalCostView.setTextColor(view.getResources().getColor(R.color.dark_blue));
+//        totalCostView.setTextColor(view.getResources().getColor(R.color.dark_blue));
+        totalCostView.setTypeface(null, Typeface.BOLD);
         tableLayout.addView(totalCostView);
 
         Button deleteHotelButton = new Button(view.getContext());

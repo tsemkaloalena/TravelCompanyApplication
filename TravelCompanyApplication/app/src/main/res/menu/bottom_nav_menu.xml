@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_guide"
+        android:icon="@drawable/ic_baseline_weekend_24"
+        android:title="@string/title_guide" />
+
+    <item
+        android:id="@+id/navigation_account"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/title_account" />
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_hotels"
+        android:icon="@drawable/ic_baseline_hotel_24"
+        android:title="@string/title_hotels" />
+
+    <item
+        android:id="@+id/navigation_flights"
+        android:icon="@drawable/ic_baseline_airplanemode_active_24"
+        android:title="@string/title_flights" />
+
+</menu>

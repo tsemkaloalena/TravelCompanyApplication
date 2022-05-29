@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.travelcompanyapplication.ui.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_account"
+        android:name="com.example.travelcompanyapplication.ui.AccountFragment"
+        android:label="@string/title_account"
+        tools:layout="@layout/fragment_account" />
+
+    <fragment
+        android:id="@+id/navigation_hotels"
+        android:name="com.example.travelcompanyapplication.ui.HotelsFragment"
+        android:label="@string/title_hotels"
+        tools:layout="@layout/fragment_hotels" />
+
+    <fragment
+        android:id="@+id/navigation_flights"
+        android:name="com.example.travelcompanyapplication.ui.FlightsFragment"
+        android:label="@string/title_flights"
+        tools:layout="@layout/fragment_flights" />
+
+    <fragment
+        android:id="@+id/navigation_guide"
+        android:name="com.example.travelcompanyapplication.ui.GuideFragment"
+        android:label="@string/title_guide"
+        tools:layout="@layout/fragment_guide" />
+
+</navigation>

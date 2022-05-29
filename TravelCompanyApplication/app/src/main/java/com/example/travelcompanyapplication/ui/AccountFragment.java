@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.travelcompanyapplication.AccountViewBuilder;
 import com.example.travelcompanyapplication.MainActivity;
+import com.example.travelcompanyapplication.databinding.FragmentAccountBinding;
 import com.example.travelcompanyapplication.db_controller.TravelCompanyDBHelper;
 
 public class AccountFragment extends Fragment {
@@ -18,7 +19,10 @@ public class AccountFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
+        TravelCompanyDBHelper travelCompanyDBHelper = new TravelCompanyDBHelper(getContext());
+        AccountViewBuilder accountViewBuilder = new AccountViewBuilder(travelCompanyDBHelper, inflater, container);
+        view = accountViewBuilder.createView(null, null);
+        MainActivity.removeView(view);
         return view;
     }
 

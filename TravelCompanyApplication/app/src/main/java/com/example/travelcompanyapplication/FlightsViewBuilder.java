@@ -40,9 +40,9 @@ public class FlightsViewBuilder implements View.OnClickListener {
     private Button findFlightsButton;
     private Button clearFiltersButton;
     private static View view;
-    private LinearLayout layout;
-    ArrayList<String> departureCities = new ArrayList<String>();
-    ArrayList<String> arrivalCities = new ArrayList<String>();
+    private static LinearLayout layout;
+    private static ArrayList<String> departureCities = new ArrayList<String>();
+    private static ArrayList<String> arrivalCities = new ArrayList<String>();
 
     public FlightsViewBuilder(TravelCompanyDBHelper travelCompanyDBHelper, LayoutInflater inflater, ViewGroup container) {
         this.travelCompanyDBHelper = travelCompanyDBHelper;
@@ -55,6 +55,14 @@ public class FlightsViewBuilder implements View.OnClickListener {
 
     public View getView() {
         return view;
+    }
+
+    public LinearLayout getLayout() {
+        ViewGroup parent = (ViewGroup) layout.getParent();
+        if (parent != null) {
+            parent.removeView(layout);
+        }
+        return layout;
     }
 
     private View changeView() {
@@ -126,7 +134,7 @@ public class FlightsViewBuilder implements View.OnClickListener {
         departureCities.add(0, "Departure city");
         arrivalCities.add(0, "Arrival city");
         if (!update) {
-            setupMenu();
+            setupMenu(view);
         }
         return view;
     }
@@ -200,7 +208,7 @@ public class FlightsViewBuilder implements View.OnClickListener {
         return textView;
     }
 
-    private void setupMenu() {
+    public void setupMenu(View view) {
         departureCityDropdown = view.findViewById(R.id.airport_departure_city_spinner);
         ArrayAdapter<String> departureCityAdapter = createSpinnerAdapter(departureCities.toArray(new String[0]));
         departureCityDropdown.setAdapter(departureCityAdapter);
@@ -246,7 +254,7 @@ public class FlightsViewBuilder implements View.OnClickListener {
                 break;
             case R.id.airport_clear_filters_button:
                 createView(null, null, true);
-                setupMenu();
+                setupMenu(view);
                 departureDateEditText.setText("");
                 numberOfTicketsBar.setProgress(1);
                 numberOfTicketsTextView.setText("Number of tickets: 1");

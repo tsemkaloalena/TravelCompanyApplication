@@ -37,8 +37,8 @@ public class HotelsViewBuilder implements View.OnClickListener {
     private LayoutInflater inflater;
     private ViewGroup container;
     private static View view;
-    private LinearLayout layout;
-    private ArrayList<String> cities = new ArrayList<String>();
+    private static LinearLayout layout;
+    private static ArrayList<String> cities = new ArrayList<String>();
     private Spinner cityDropdown;
     private EditText departureDateEditText;
     private EditText arrivalDateEditText;
@@ -66,6 +66,13 @@ public class HotelsViewBuilder implements View.OnClickListener {
         return view;
     }
 
+    public LinearLayout getLayout() {
+        ViewGroup parent = (ViewGroup) layout.getParent();
+        if (parent != null) {
+            parent.removeView(layout);
+        }
+        return layout;
+    }
 
     private View changeView() {
         String city = cityDropdown.getSelectedItem().toString();
@@ -143,7 +150,7 @@ public class HotelsViewBuilder implements View.OnClickListener {
         }
         if (!update) {
             cities.add(0, "City");
-            setupMenu();
+            setupMenu(view);
         }
         return view;
     }
@@ -227,7 +234,7 @@ public class HotelsViewBuilder implements View.OnClickListener {
         return textView;
     }
 
-    private void setupMenu() {
+    public void setupMenu(View view) {
         cityDropdown = view.findViewById(R.id.hotel_city_spinner);
         ArrayAdapter<String> cityAdapter = createSpinnerAdapter(cities.toArray(new String[0]));
         cityDropdown.setAdapter(cityAdapter);
@@ -307,7 +314,7 @@ public class HotelsViewBuilder implements View.OnClickListener {
                 break;
             case R.id.hotel_clear_filters_button:
                 createView(null, null, true);
-                setupMenu();
+                setupMenu(view);
                 departureDateEditText.setText("");
                 arrivalDateEditText.setText("");
                 hotelStarsCheckbox0.setChecked(false);

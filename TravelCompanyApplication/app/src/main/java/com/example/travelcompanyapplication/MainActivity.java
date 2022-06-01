@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.travelcompanyapplication.databinding.ActivityMainBinding;
+import com.example.travelcompanyapplication.db_controller.TravelCompanyDBHelper;
 import com.example.travelcompanyapplication.ui.GuideFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -42,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        ViewGroup container = (ViewGroup) findViewById(R.id.nav_host_fragment_activity_main).getRootView();
+        TravelCompanyDBHelper travelCompanyDBHelper = new TravelCompanyDBHelper(getApplicationContext());
+        HotelsViewBuilder hotelsViewBuilder = new HotelsViewBuilder(travelCompanyDBHelper, getLayoutInflater(), container);
+        FlightsViewBuilder flightsViewBuilder = new FlightsViewBuilder(travelCompanyDBHelper, getLayoutInflater(), container);
+
+
         BottomNavigationView navigationView = findViewById(R.id.nav_view);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_account, R.id.navigation_hotels, R.id.navigation_flights, R.id.navigation_guide)
@@ -52,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void removeView(View view) {
+        if (view == null) {
+            return;
+        }
         ViewGroup parent = (ViewGroup) view.getParent();
         if (parent != null) {
             parent.removeView(view);
